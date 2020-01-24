@@ -146,6 +146,46 @@
       </div>
     </div>
   </section>
+  <section class="why-is-matters">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-4 has-text-white">
+          <h5>Why It Matters</h5>
+          <p>
+            In the <a href="#">2019 State of Remote Work</a> report, OWLlabs
+            surveyed 1,202 full-time workers in the United States
+            between the ages of 22 and 65. Some key findings
+            about remote work include:
+          </p>
+        </div>
+      </div>
+      <div class="columns is-multiline" style="margin-top: 20px" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+        <div class="column is-4">
+          <apexchart type="radialBar" :options="chartOptions1" :series="seriesP1"></apexchart>
+          <div style="text-align:center">
+            {{seriesP1[0]}}% of people said having a flexible job would allow
+            them to be healthier (eat better, exercise more, etc).
+          </div>
+        </div>
+        <div class="column is-4">
+          <apexchart type="radialBar" :options="chartOptions2" :series="seriesP2"></apexchart>
+          <div style="text-align:center">
+            {{seriesP2[0]}}% of people said they would be less
+            stressed by having a flexible job.
+          </div>
+        </div>
+        <div class="column is-4">
+          <apexchart type="radialBar" :options="chartOptions3" :series="seriesP3"></apexchart>
+          <div style="text-align:center">
+            {{seriesP3[0]}}% of workers say a job with flexibility would
+            have huge improvement or positive impact on their
+            overall quality of life. 
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
   <!-- SECOND LIVE CONNECTED VIDEO -->
   <section class="section hero live-video-hero2 has-text-white">
     <div class="center-box">
@@ -267,21 +307,24 @@
           <p>Whether you want to live downtown or out of town, Ketchikan has diverse housing options that make it affordable to live a tremendously high quality of life.  As housing prices in major cities continue to soar, Ketchikan offers highly affordable alternatives.</p>
           </div>
         </div>
-        <div class="columns is-multiline">
+        <div class="columns is-multiline" style="margin-top: 20px" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
           <div class="column is-4">
-            <apexchart type="bar" :options="options1" :series="series1"></apexchart>
-            <div>The Average 2 Bedroom Rental in Ketchikan is ${{series1[0].data[0]}}</div>
-            <div>The Average 2 Bedroom Rental in Seattle is ${{series1[0].data[1]}}</div>
+            <div style="text-align: center">{{series1[0].name}}</div>
+            <apexchart type="bar" height="400px" :options="options1" :series="series1"></apexchart>
+            <div v-bind:style="{color: options1.plotOptions.bar.colors.ranges[0].color}">The Average 2 Bedroom Rental in Ketchikan is ${{series1[0].data[0]}}</div>
+            <div v-bind:style="{color: options1.plotOptions.bar.colors.ranges[1].color}">The Average 2 Bedroom Rental in Seattle is ${{series1[0].data[1]}}</div>
           </div>
           <div class="column is-4">
-            <apexchart type="bar" :options="options2" :series="series2"></apexchart>
-            <div>The Average Home Price in Ketchikan is ${{series2[0].data[0]}}</div>
-            <div>The Average Home Price in Seattle is ${{series2[0].data[1]}}</div>
+            <div style="text-align: center">{{series2[0].name}}</div>
+            <apexchart type="bar" height="400px" :options="options2" :series="series2"></apexchart>
+            <div v-bind:style="{color: options2.plotOptions.bar.colors.ranges[0].color}">The Average Home Price in Ketchikan is ${{series2[0].data[0]}}</div>
+            <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[1].color}">The Average Home Price in Seattle is ${{series2[0].data[1]}}</div>
           </div>
           <div class="column is-4">
-            <apexchart type="bar" :options="options3" :series="series3"></apexchart>
-            <div>The Average Commute time in Ketchikan is {{series3[0].data[0]}} Minutes</div>
-            <div>The Average Commute Time in Seattle is {{series3[0].data[1]}} Minutes</div>
+            <div style="text-align: center">{{series3[0].name}}</div>
+            <apexchart type="bar" height="400px" :options="options3" :series="series3"></apexchart>
+            <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[0].color}">The Average Commute time in Ketchikan is {{series3[0].data[0]}} Minutes</div>
+            <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[1].color}">The Average Commute Time in Seattle is {{series3[0].data[1]}} Minutes</div>
           </div>
         </div>
        </div>
@@ -521,7 +564,124 @@ export default {
   },
   data: function() {
     return {
+      
+      seriesP1: [77],
+      chartOptions1: {
+        chart: {
+          type: 'radialBar',
+          offsetY: -20
+        },
+        colors: ['#114253'],
+        plotOptions: {
+          radialBar: {
+            startAngle: -90,
+            endAngle: 90,
+            track: {
+              background: "#e7e7e7",
+              strokeWidth: '97%',
+              margin: 5, // margin is in pixels
+              dropShadow: {
+                enabled: true,
+                top: 2,
+                left: 0,
+                color: '#999',
+                opacity: 1,
+                blur: 2
+              }
+            },
+            dataLabels: {
+              name: {
+                show: false
+              },
+              value: {
+                offsetY: -2,
+                fontSize: '22px'
+              }
+            }
+          }
+        },
+        labels: ['Average Results'],
+      },
+      seriesP2: [86],
+      chartOptions2: {
+        chart: {
+          type: 'radialBar',
+          offsetY: -20
+        },
+        colors: ['#69a3a9'],
+        plotOptions: {
+          radialBar: {
+            startAngle: -90,
+            endAngle: 90,
+            track: {
+              background: "#e7e7e7",
+              strokeWidth: '97%',
+              margin: 5, // margin is in pixels
+              dropShadow: {
+                enabled: true,
+                top: 2,
+                left: 0,
+                color: '#999',
+                opacity: 1,
+                blur: 2
+              }
+            },
+            dataLabels: {
+              name: {
+                show: false
+              },
+              value: {
+                offsetY: -2,
+                fontSize: '22px'
+              }
+            }
+          }
+        },
+        labels: ['Average Results'],
+      },
+      seriesP3: [97],
+      chartOptions3: {
+        chart: {
+          type: 'radialBar',
+          offsetY: -20
+        },
+        colors: ['#98521b'],
+        plotOptions: {
+          radialBar: {
+            startAngle: -90,
+            endAngle: 90,
+            track: {
+              background: "#e7e7e7",
+              strokeWidth: '97%',
+              margin: 5, // margin is in pixels
+              dropShadow: {
+                enabled: true,
+                top: 2,
+                left: 0,
+                color: '#999',
+                opacity: 1,
+                blur: 2
+              }
+            },
+            dataLabels: {
+              name: {
+                show: false
+              },
+              value: {
+                offsetY: -2,
+                fontSize: '22px'
+              }
+            }
+          }
+        },
+        labels: ['Average Results'],
+      },
       options1: {
+        chart: {
+          toolbar: {
+            show: false
+          }
+        },
         xaxis: {
           categories: ['', ''],
         },
@@ -549,6 +709,11 @@ export default {
         }
       },
       options2: {
+        chart: {
+          toolbar: {
+            show: false
+          }
+        },
         xaxis: {
           categories: ['', ''],
         },
@@ -576,6 +741,11 @@ export default {
         }
       },
       options3: {
+        chart: {
+          toolbar: {
+            show: false
+          }
+        },
         xaxis: {
           categories: ['', ''],
         },
@@ -604,12 +774,12 @@ export default {
       },
       series1: [
         {
-          name: 'Ketchikan',
+          name: 'Amounts in $US Dollars',
           data: [1285, 2867],
         },
       ],
       series2: [{
-        name: 'Amounts in $IS Dollars',
+        name: 'Amounts in $US Dollars',
         data: [290000, 720000],
       }],
       series3: [{
