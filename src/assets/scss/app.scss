@@ -1,0 +1,519 @@
+@import '../../../node_modules/bulma/bulma.sass';
+
+@import "./components/mixins";
+
+.wrapper {
+  position: relative;
+}
+
+
+@include tabletland {
+  .wrapper {
+    overflow-x: hidden;
+  }
+}
+
+.video-slide {
+  margin-top: -270px;
+  position: relative;
+  z-index: -1;
+
+
+  @include desktop {
+    margin-top: -49%;
+  }
+
+  @include widescreen {
+    margin-top: -35%;
+  }
+
+  @include fullhd {
+    margin-top: -18%;
+  }
+
+  @include xxlarge {
+    margin-top: -270px;
+  }
+
+  @include tabletland {
+    margin-top: -35%;
+  }
+
+  @include mobile {
+    display: none;
+  }
+
+  .mobilehero {
+
+  }
+
+  h1 {
+    position: relative;
+    z-index: 100;
+    top: 55vh;
+    line-height: 5rem;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-family: $mainfont;
+    text-shadow: 0 3px 20px rgba(0, 0, 0, 0.84);
+    font-size: 69px;
+    letter-spacing: 6.9px;
+    color: white;
+    text-transform: uppercase;
+
+    @include tabletland {
+      font-size: 55px;
+      top: 60vh;
+    }
+  }
+  h2 {
+    font-family: $descriptionfont;
+    font-size: 30px;
+    letter-spacing: 6px;
+    position: relative;
+    z-index: 100;
+    top: 55vh;
+    color: white;
+    text-align: center;
+    @include tabletland {
+      top: 57vh;
+      font-size: 25px;
+    }
+  }
+}
+
+.header-section {
+  background-color: $live-teal;
+  height: 14.3rem;
+  @include mobile {
+    height: auto;
+  }
+  h1 {
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    padding: 69px 0;
+    font-family: $descriptionfont;
+    letter-spacing: 2.9px;
+    @include tabletland {
+      font-size: 16px;
+      line-height: 2.1rem;
+      padding: 62px 0;
+    }
+    @include mobile {
+      font-size: 15px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}
+
+.icon-section {
+
+  margin-top: 100px;
+
+  .container {
+    @include xxlarge {
+      max-width: 1600px;
+      width: 1600px;
+    }
+  }
+
+  .is-2 {
+    width: 20%;
+    @include mobile {
+      width: 100%;
+    }
+  }
+
+  h3 {
+    font-size: 24px;
+    font-family: $descriptionfont;
+    text-align: center;
+    @include tabletland {
+      font-size: 14px;
+    }
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
+}
+
+
+.live-video-hero {
+  margin-top: 100px;
+  @include secondheros('../img/live_secondhero.jpg');
+  position: relative;
+  @include mobile {
+    height: 30rem;
+  }
+  background-position: center;
+  .center-box {
+    @include absolutecenter(both);
+    width: 100%;
+    text-align: center;
+    a {
+      color: white;
+      &:hover {
+          color: #7cb1b7;
+      }
+    }
+  }
+  h1 {
+    font-family: $mainfont;
+    text-shadow: 0 3px 20px rgba(0, 0, 0, 0.84);
+    font-size: 69px;
+    letter-spacing: 6.9px;
+    margin-top: 120px;
+    @include mobile {
+      font-size: 35px;
+      text-align: center;
+    }
+  }
+  .play-triangle {
+      position: relative;
+
+      &:before {
+          content: "\f144";
+          font-family: "Font Awesome 5 Free";
+          left: 46%;
+          top: -5rem;
+          font-size: 10rem;
+          position: absolute;
+          @include tabletland {
+            left: 41.5%;
+          }
+      }
+  }
+}
+
+.live-connected {
+
+  margin-top: 90px;
+
+  .is-7 {
+
+    padding-left: 130px;
+
+    p {
+      padding-top: 40px;
+      &:last-child {
+        padding-top: 0;
+      }
+    }
+
+    @include tabletland {
+      width: 100%;
+      padding-left: 50px;
+    }
+
+    @include tablet-only {
+      width: 100%;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    @include mobile {
+      padding-left: 20px;
+    }
+
+  }
+
+  .is-5 {
+
+    position: relative;
+    right: 100px;
+
+    @include tabletland {
+      width: 90%;
+      right: -50px;
+    }
+
+    @include tablet-only {
+      width: 100%;
+      right: -10px;
+    }
+
+    @include mobile {
+      right: 20px;
+    }
+
+  }
+
+  .is-6 {
+    @include xxlarge {
+      padding-right: 30px;
+    }
+  }
+
+  .is-fluid {
+    margin: 0;
+  }
+
+  .secondcontainer {
+    h1 {
+      margin-bottom: 50px;
+    }
+    @include xxlarge {
+      max-width: 1670px;
+      width: 1670px;
+    }
+    @include tablet-only {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    @include mobile {
+      padding-left: 5px;
+      padding-right: 20px;
+    }
+  }
+
+  p {
+    margin-top: 25px;
+  }
+
+  .lower-units {
+    h5 {
+      margin-top: 35px;
+    }
+  }
+
+  .is-visitors {
+    padding-left: 5%;
+    @include mobile {
+      padding-left: 14px;
+    }
+  }
+
+}
+
+
+.work-play-hero {
+  @extend .live-video-hero;
+  @include secondheros('../img/live_thirdhero.jpg');
+
+  h1 {
+    margin-top: 0;
+  }
+
+  @include mobile {
+    height: 30rem;
+  }
+
+  h1 {
+    @include absolutecenter(both);
+    text-align: center;
+    width: 65%;
+
+    @include tabletland {
+      width: 100%;
+      font-size: 55px;
+      line-height: 5rem;
+      letter-spacing: 4px;
+    }
+
+    @include tablet-only {
+      width: 100%;
+    }
+
+    @include mobile {
+     width: 100%;
+    }
+
+  }
+
+}
+
+
+.infustructure-section {
+
+  height: 14.3rem;
+  background-color: #8fa3b4;
+
+  @include mobile {
+    height: auto;
+  }
+
+  h1 {
+      text-align: center;
+      padding: 55px 0;
+      color: white;
+      font-size: 24px;
+      padding: 55px 0;
+      font-family: $descriptionfont;
+      letter-spacing: 2.9px;
+
+      @include tabletland {
+        font-size: 16px;
+        line-height: 2.1rem;
+        padding: 55px 0;
+      }
+      @include mobile {
+        font-size: 16px;
+      }
+  }
+
+}
+
+.live-video-hero2 {
+  @extend .live-video-hero;
+  margin-top: 0;
+  @include secondheros('../img/live-fourthhero.jpg');
+  @include mobile {
+    height: 30rem;
+  }
+}
+
+.play-hero {
+  margin-top: 100px;
+  @include secondheros('../img/live-fifthhero.jpg');
+  @include mobile {
+    height: 30rem;
+  }
+}
+
+.innovate-hero {
+  margin-top: 100px;
+  @include secondheros('../img/live-sixthhero.jpg');
+  @include mobile {
+    height: 30rem;
+  }
+
+}
+
+.important-hero {
+  margin-top: 100px;
+  @include secondheros('../img/live-seventhhero.jpg');
+  @include tabletland {
+    background-position: left;
+  }
+  @include tablet-only {
+    background-position: left;
+  }
+  @include mobile {
+    height: 30rem;
+  }
+}
+
+.taskforce-hero {
+  @extend .live-video-hero;
+  margin-top: 100px;
+  @include secondheros('../img/live-eigthhero.jpg');
+  @include mobile {
+    height: 30rem;
+  }
+}
+
+
+// CONTACT FORM
+
+
+.contact-form {
+  height: 50.5rem;
+  background-color: rgb(7, 51, 64);
+  margin-top: 100px;
+
+  h3 {
+    opacity: 0.86;
+    color: rgb(124, 177, 183);
+    font-family: Oswald;
+    font-size: 4.313rem;
+    font-weight: 400;
+    letter-spacing: 0.431rem;
+    text-transform: uppercase;
+  }
+
+  h6 {
+    color: rgb(255, 255, 255);
+    font-family: $descriptionfont;
+    font-size: 1.188rem;
+    font-weight: 500;
+    letter-spacing: 0.059rem;
+    line-height: 2.063rem;
+    margin-top: -15px;
+  }
+
+  p {
+    color: white;
+    font-family: $descriptionfont;
+    font-size: 1.188rem;
+    font-weight: 500;
+    letter-spacing: 0.059rem;
+    line-height: 2.063rem;
+  }
+
+  input {
+    height: 3.563rem;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    font-family: $descriptionfont;
+    color: rgb(59, 59, 59);
+    font-size: 1.188rem;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.059rem;
+    padding-left: 5px;
+  }
+
+  select {
+    -webkit-appearance: none;
+    background-color: white;
+    background-image: url('../img/select_button.png');
+    background-size: 1.5rem;
+    background-position: 96% 53%;
+    background-repeat: no-repeat;
+    height: 3.563rem;
+    width: 100%;
+    border-radius: 0;
+    font-family: $descriptionfont;
+    color: rgb(59, 59, 59);
+    font-size: 1.188rem;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.059rem;
+    padding-left: 5px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 10rem;
+    color: rgb(59, 59, 59);
+    font-family: $descriptionfont;
+    font-size: 1.188rem;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 0.059rem;
+    line-height: 2.063rem;
+    padding-left: 5px;
+  }
+
+  .btn-submit {
+    width: 100%;
+    height: 3.563rem;
+    background-color: rgb(168, 101, 9);
+    border: none;
+    color: white;
+    margin-top: 6.5rem;
+    font-family: $descriptionfont;
+    font-size: 1.188rem;
+    font-weight: 700;
+    letter-spacing: 0.059rem;
+    line-height: 2.063rem;
+    text-transform: uppercase;
+  }
+}
+
+
+.hooper {
+  @include tablet {
+    height: auto;
+  }
+
+  @include xxlarge {
+    height: 100vh;
+  }
+}
