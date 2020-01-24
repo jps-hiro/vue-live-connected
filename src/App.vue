@@ -307,22 +307,22 @@
           <p>Whether you want to live downtown or out of town, Ketchikan has diverse housing options that make it affordable to live a tremendously high quality of life.  As housing prices in major cities continue to soar, Ketchikan offers highly affordable alternatives.</p>
           </div>
         </div>
-        <div class="columns is-multiline" style="margin-top: 20px" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+        <div class="columns is-multiline bar-charts" ref="barCharts" style="margin-top: 20px" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
           <div class="column is-4">
             <div style="text-align: center">{{series1[0].name}}</div>
-            <apexchart type="bar" height="400px" :options="options1" :series="series1"></apexchart>
+            <apexchart type="bar" ref="chart4" height="400px" :options="options1" :series="series1"></apexchart>
             <div v-bind:style="{color: options1.plotOptions.bar.colors.ranges[0].color}">The Average 2 Bedroom Rental in Ketchikan is ${{series1[0].data[0]}}</div>
             <div v-bind:style="{color: options1.plotOptions.bar.colors.ranges[1].color}">The Average 2 Bedroom Rental in Seattle is ${{series1[0].data[1]}}</div>
           </div>
           <div class="column is-4">
             <div style="text-align: center">{{series2[0].name}}</div>
-            <apexchart type="bar" height="400px" :options="options2" :series="series2"></apexchart>
+            <apexchart type="bar" ref="chart5" height="400px" :options="options2" :series="series2"></apexchart>
             <div v-bind:style="{color: options2.plotOptions.bar.colors.ranges[0].color}">The Average Home Price in Ketchikan is ${{series2[0].data[0]}}</div>
             <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[1].color}">The Average Home Price in Seattle is ${{series2[0].data[1]}}</div>
           </div>
           <div class="column is-4">
             <div style="text-align: center">{{series3[0].name}}</div>
-            <apexchart type="bar" height="400px" :options="options3" :series="series3"></apexchart>
+            <apexchart type="bar" ref="chart6" height="400px" :options="options3" :series="series3"></apexchart>
             <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[0].color}">The Average Commute time in Ketchikan is {{series3[0].data[0]}} Minutes</div>
             <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[1].color}">The Average Commute Time in Seattle is {{series3[0].data[1]}} Minutes</div>
           </div>
@@ -572,15 +572,15 @@ export default {
           offsetY: -20,
           animations: {
             enabled: true,
-            easing: 'easeinout',
+            easing: 'linear',
             speed: 5000,
             animateGradually: {
                 enabled: true,
-                delay: 550
+                delay: 50
             },
             dynamicAnimation: {
                 enabled: true,
-                speed: 850
+                speed: 100
             }
           }
         },
@@ -720,19 +720,19 @@ export default {
           toolbar: {
             show: false
           },
-          // animations: {
-          //   enabled: true,
-          //   easing: 'easeinout',
-          //   speed: 2000,
-          //   animateGradually: {
-          //       enabled: true,
-          //       delay: 550
-          //   },
-          //   dynamicAnimation: {
-          //       enabled: true,
-          //       speed: 850
-          //   }
-          // }
+          animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 1000,
+            animateGradually: {
+                enabled: true,
+                delay: 550
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 850
+            }
+          }
         },
         xaxis: {
           categories: ['', ''],
@@ -765,19 +765,19 @@ export default {
           toolbar: {
             show: false
           },
-          // animations: {
-          //   enabled: true,
-          //   easing: 'easeinout',
-          //   speed: 2000,
-          //   animateGradually: {
-          //       enabled: true,
-          //       delay: 550
-          //   },
-          //   dynamicAnimation: {
-          //       enabled: true,
-          //       speed: 850
-          //   }
-          // }
+          animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 1000,
+            animateGradually: {
+                enabled: true,
+                delay: 550
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 850
+            }
+          }
         },
         xaxis: {
           categories: ['', ''],
@@ -810,19 +810,19 @@ export default {
           toolbar: {
             show: false
           },
-          // animations: {
-          //   enabled: true,
-          //   easing: 'easeinout',
-          //   speed: 2000,
-          //   animateGradually: {
-          //       enabled: true,
-          //       delay: 550
-          //   },
-          //   dynamicAnimation: {
-          //       enabled: true,
-          //       speed: 850
-          //   }
-          // }
+          animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 1000,
+            animateGradually: {
+                enabled: true,
+                delay: 550
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 850
+            }
+          }
         },
         xaxis: {
           categories: ['', ''],
@@ -864,33 +864,33 @@ export default {
         name: 'Amounts in Minutes',
         data: [10, 48]
       }],
-      oldAttr:""
+      oldAttr:"",
+      oldAttr1:"",
     }
   },
   methods: {
     onClassChange(classAttrValue) {
-      // alert(classAttrValue)
-      
       const classList = classAttrValue.split(' ');
-      if(this.oldAttr !== classAttrValue){
-        this.oldAttr = classAttrValue;
-        if (classList.includes('aos-animate')) {
-          this.seriesP1[0] = 77;
-          this.seriesP2[0] = 86;
-          this.seriesP3[0] = 97;
-          this.$refs.chart1.updateSeries(this.seriesP1);
-          this.$refs.chart2.updateSeries(this.seriesP2);
-          this.$refs.chart3.updateSeries(this.seriesP3);
-        } else {
-          this.seriesP1[0] = 0;
-          this.seriesP2[0] = 0;
-          this.seriesP3[0] = 0;
-          this.$refs.chart1.updateSeries(this.seriesP1);
-          this.$refs.chart2.updateSeries(this.seriesP2);
-          this.$refs.chart3.updateSeries(this.seriesP3);
+      if (classList.includes('bar-charts')) {
+        if(this.oldAttr !== classAttrValue){
+          this.oldAttr = classAttrValue;
+          if (classList.includes('aos-animate')) {
+            this.$refs.chart4.updateOptions (this.options1, true, true, true);
+            this.$refs.chart5.updateOptions (this.options2, true, true, true);
+            this.$refs.chart6.updateOptions (this.options3, true, true, true);                
+          }
+        }
+      } else {
+        if(this.oldAttr1 !== classAttrValue){
+          this.oldAttr1 = classAttrValue;
+          if (classList.includes('aos-animate')) {
+            this.$refs.chart1.updateOptions (this.chartOptions1, true, true, true);
+            this.$refs.chart2.updateOptions (this.chartOptions2, true, true, true);
+            this.$refs.chart3.updateOptions (this.chartOptions3, true, true, true);
+          }
         }
       }
-    }
+    }    
   },
   mounted() {
     this.observer = new MutationObserver(mutations => {
@@ -903,6 +903,12 @@ export default {
     });
 
     this.observer.observe(this.$refs.radialProgressBars, {
+      attributes: true,
+      attributeOldValue : true,
+      attributeFilter: ['class'],
+    });
+    
+    this.observer.observe(this.$refs.barCharts, {
       attributes: true,
       attributeOldValue : true,
       attributeFilter: ['class'],
