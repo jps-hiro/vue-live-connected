@@ -308,23 +308,23 @@
           </div>
         </div>
         <div class="columns is-multiline bar-charts" ref="barCharts" style="margin-top: 20px" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-          <div class="column is-4">
+          <div class="column is-4" style="text-align: center">
             <div style="text-align: center">{{series1[0].name}}</div>
             <apexchart type="bar" ref="chart4" height="400px" :options="options1" :series="series1"></apexchart>
-            <div v-bind:style="{color: options1.plotOptions.bar.colors.ranges[0].color}">The Average 2 Bedroom Rental in Ketchikan is ${{series1[0].data[0]}}</div>
-            <div v-bind:style="{color: options1.plotOptions.bar.colors.ranges[1].color}">The Average 2 Bedroom Rental in Seattle is ${{series1[0].data[1]}}</div>
+            <div v-bind:style="{color: options1.plotOptions.bar.colors.ranges[0].color}">The Average 2 Bedroom Rental in Ketchikan is $1285}}</div>
+            <div v-bind:style="{color: options1.plotOptions.bar.colors.ranges[1].color}">The Average 2 Bedroom Rental in Seattle is $2867</div>
           </div>
-          <div class="column is-4">
+          <div class="column is-4" style="text-align: center">
             <div style="text-align: center">{{series2[0].name}}</div>
             <apexchart type="bar" ref="chart5" height="400px" :options="options2" :series="series2"></apexchart>
-            <div v-bind:style="{color: options2.plotOptions.bar.colors.ranges[0].color}">The Average Home Price in Ketchikan is ${{series2[0].data[0]}}</div>
-            <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[1].color}">The Average Home Price in Seattle is ${{series2[0].data[1]}}</div>
+            <div v-bind:style="{color: options2.plotOptions.bar.colors.ranges[0].color}">The Average Home Price in Ketchikan is $290000</div>
+            <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[1].color}">The Average Home Price in Seattle is $720000</div>
           </div>
-          <div class="column is-4">
-            <div style="text-align: center">{{series3[0].name}}</div>
+          <div class="column is-4" style="text-align: center">
+            <div >{{series3[0].name}}</div>
             <apexchart type="bar" ref="chart6" height="400px" :options="options3" :series="series3"></apexchart>
-            <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[0].color}">The Average Commute time in Ketchikan is {{series3[0].data[0]}} Minutes</div>
-            <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[1].color}">The Average Commute Time in Seattle is {{series3[0].data[1]}} Minutes</div>
+            <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[0].color}">The Average Commute time in Ketchikan is 10 Minutes</div>
+            <div v-bind:style="{color: options3.plotOptions.bar.colors.ranges[1].color}">The Average Commute Time in Seattle is 48 Minutes</div>
           </div>
         </div>
        </div>
@@ -737,12 +737,16 @@ export default {
         xaxis: {
           categories: ['', ''],
         },
+        yaxis: {
+          tickAmount: 12,
+          max: 3000
+        },
         dataLabels: {
           enabled: false
         },
         plotOptions: {
           bar: {
-            columnWidth: '20%',
+            columnWidth: '30%',
             colors: {
               ranges: [
                 {
@@ -782,12 +786,16 @@ export default {
         xaxis: {
           categories: ['', ''],
         },
+        yaxis: {
+          tickAmount: 10,
+          max: 1000000
+        },
         dataLabels: {
           enabled: false
         },
         plotOptions: {
           bar: {
-            columnWidth: '20%',
+            columnWidth: '30%',
             colors: {
               ranges: [
                 {
@@ -827,12 +835,16 @@ export default {
         xaxis: {
           categories: ['', ''],
         },
+        yaxis: {
+          tickAmount: 10,
+          max: 50
+        },
         dataLabels: {
           enabled: false
         },
         plotOptions: {
           bar: {
-            columnWidth: '20%',
+            columnWidth: '30%',
             colors: {
               ranges: [
                 {
@@ -853,16 +865,16 @@ export default {
       series1: [
         {
           name: 'Amounts in $US Dollars',
-          data: [1285, 2867],
+          data: [0, 0, 1285, 2867, 0, 0],
         },
       ],
       series2: [{
         name: 'Amounts in $US Dollars',
-        data: [290000, 720000],
+        data: [0,0 , 290000, 720000, 0,0],
       }],
       series3: [{
         name: 'Amounts in Minutes',
-        data: [10, 48]
+        data: [0, 0, 10, 48, 0, 0]
       }],
       oldAttr:"",
       oldAttr1:"",
