@@ -159,23 +159,23 @@
           </p>
         </div>
       </div>
-      <div class="columns is-multiline" ref="radialProgressBars" style="margin-top: 20px"  data-aos="zoom-in" data-aos-duration="100" data-aos-delay="10">
+      <div class="columns is-multiline" ref="radialProgressBars" style="margin-top: 20px"  data-aos="zoom-in" data-aos-duration="10" data-aos-delay="10">
         <div class="column is-4">
-          <apexchart type="radialBar" :options="chartOptions1" :series="seriesP1"></apexchart>
+          <apexchart type="radialBar" ref="chart1" :options="chartOptions1" :series="seriesP1"></apexchart>
           <div style="text-align:center">
             77% of people said having a flexible job would allow
             them to be healthier (eat better, exercise more, etc).
           </div>
         </div>
         <div class="column is-4">
-          <apexchart type="radialBar" :options="chartOptions2" :series="seriesP2"></apexchart>
+          <apexchart type="radialBar" ref="chart2" :options="chartOptions2" :series="seriesP2"></apexchart>
           <div style="text-align:center">
             86% of people said they would be less
             stressed by having a flexible job.
           </div>
         </div>
         <div class="column is-4">
-          <apexchart type="radialBar" :options="chartOptions3" :series="seriesP3"></apexchart>
+          <apexchart type="radialBar" ref="chart3" :options="chartOptions3" :series="seriesP3"></apexchart>
           <div style="text-align:center">
             97% of workers say a job with flexibility would
             have huge improvement or positive impact on their
@@ -573,7 +573,7 @@ export default {
           animations: {
             enabled: true,
             easing: 'easeinout',
-            speed: 2000,
+            speed: 5000,
             animateGradually: {
                 enabled: true,
                 delay: 550
@@ -623,7 +623,7 @@ export default {
           animations: {
             enabled: true,
             easing: 'easeinout',
-            speed: 2000,
+            speed: 5000,
             animateGradually: {
                 enabled: true,
                 delay: 550
@@ -673,7 +673,7 @@ export default {
           animations: {
             enabled: true,
             easing: 'easeinout',
-            speed: 2000,
+            speed: 5000,
             animateGradually: {
                 enabled: true,
                 delay: 550
@@ -878,10 +878,16 @@ export default {
           this.seriesP1[0] = 77;
           this.seriesP2[0] = 86;
           this.seriesP3[0] = 97;
+          this.$refs.chart1.updateSeries(this.seriesP1);
+          this.$refs.chart2.updateSeries(this.seriesP2);
+          this.$refs.chart3.updateSeries(this.seriesP3);
         } else {
           this.seriesP1[0] = 0;
           this.seriesP2[0] = 0;
           this.seriesP3[0] = 0;
+          this.$refs.chart1.updateSeries(this.seriesP1);
+          this.$refs.chart2.updateSeries(this.seriesP2);
+          this.$refs.chart3.updateSeries(this.seriesP3);
         }
       }
     }
