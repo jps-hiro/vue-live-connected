@@ -159,25 +159,25 @@
           </p>
         </div>
       </div>
-      <div class="columns is-multiline" style="margin-top: 20px" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+      <div class="columns is-multiline" ref="radialProgressBars" style="margin-top: 20px"  data-aos="zoom-in" data-aos-duration="100" data-aos-delay="10">
         <div class="column is-4">
           <apexchart type="radialBar" :options="chartOptions1" :series="seriesP1"></apexchart>
           <div style="text-align:center">
-            {{seriesP1[0]}}% of people said having a flexible job would allow
+            77% of people said having a flexible job would allow
             them to be healthier (eat better, exercise more, etc).
           </div>
         </div>
         <div class="column is-4">
           <apexchart type="radialBar" :options="chartOptions2" :series="seriesP2"></apexchart>
           <div style="text-align:center">
-            {{seriesP2[0]}}% of people said they would be less
+            86% of people said they would be less
             stressed by having a flexible job.
           </div>
         </div>
         <div class="column is-4">
           <apexchart type="radialBar" :options="chartOptions3" :series="seriesP3"></apexchart>
           <div style="text-align:center">
-            {{seriesP3[0]}}% of workers say a job with flexibility would
+            97% of workers say a job with flexibility would
             have huge improvement or positive impact on their
             overall quality of life. 
           </div>
@@ -569,7 +569,20 @@ export default {
       chartOptions1: {
         chart: {
           type: 'radialBar',
-          offsetY: -20
+          offsetY: -20,
+          animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 2000,
+            animateGradually: {
+                enabled: true,
+                delay: 550
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 850
+            }
+          }
         },
         colors: ['#114253'],
         plotOptions: {
@@ -606,7 +619,20 @@ export default {
       chartOptions2: {
         chart: {
           type: 'radialBar',
-          offsetY: -20
+          offsetY: -20,
+          animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 2000,
+            animateGradually: {
+                enabled: true,
+                delay: 550
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 850
+            }
+          }
         },
         colors: ['#69a3a9'],
         plotOptions: {
@@ -643,7 +669,20 @@ export default {
       chartOptions3: {
         chart: {
           type: 'radialBar',
-          offsetY: -20
+          offsetY: -20,
+          animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 2000,
+            animateGradually: {
+                enabled: true,
+                delay: 550
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 850
+            }
+          }
         },
         colors: ['#98521b'],
         plotOptions: {
@@ -680,7 +719,20 @@ export default {
         chart: {
           toolbar: {
             show: false
-          }
+          },
+          // animations: {
+          //   enabled: true,
+          //   easing: 'easeinout',
+          //   speed: 2000,
+          //   animateGradually: {
+          //       enabled: true,
+          //       delay: 550
+          //   },
+          //   dynamicAnimation: {
+          //       enabled: true,
+          //       speed: 850
+          //   }
+          // }
         },
         xaxis: {
           categories: ['', ''],
@@ -712,7 +764,20 @@ export default {
         chart: {
           toolbar: {
             show: false
-          }
+          },
+          // animations: {
+          //   enabled: true,
+          //   easing: 'easeinout',
+          //   speed: 2000,
+          //   animateGradually: {
+          //       enabled: true,
+          //       delay: 550
+          //   },
+          //   dynamicAnimation: {
+          //       enabled: true,
+          //       speed: 850
+          //   }
+          // }
         },
         xaxis: {
           categories: ['', ''],
@@ -744,7 +809,20 @@ export default {
         chart: {
           toolbar: {
             show: false
-          }
+          },
+          // animations: {
+          //   enabled: true,
+          //   easing: 'easeinout',
+          //   speed: 2000,
+          //   animateGradually: {
+          //       enabled: true,
+          //       delay: 550
+          //   },
+          //   dynamicAnimation: {
+          //       enabled: true,
+          //       speed: 850
+          //   }
+          // }
         },
         xaxis: {
           categories: ['', ''],
@@ -786,8 +864,47 @@ export default {
         name: 'Amounts in Minutes',
         data: [10, 48]
       }],
+      oldAttr:""
     }
-  }
+  },
+  methods: {
+    onClassChange(classAttrValue) {
+      // alert(classAttrValue)
+      
+      const classList = classAttrValue.split(' ');
+      if(this.oldAttr !== classAttrValue){
+        this.oldAttr = classAttrValue;
+        if (classList.includes('aos-animate')) {
+          this.seriesP1[0] = 77;
+          this.seriesP2[0] = 86;
+          this.seriesP3[0] = 97;
+        } else {
+          this.seriesP1[0] = 0;
+          this.seriesP2[0] = 0;
+          this.seriesP3[0] = 0;
+        }
+      }
+    }
+  },
+  mounted() {
+    this.observer = new MutationObserver(mutations => {
+      for (const m of mutations) {
+        const newValue = m.target.getAttribute(m.attributeName);
+        this.$nextTick(() => {
+          this.onClassChange(newValue, m.oldValue);
+        });
+      }
+    });
+
+    this.observer.observe(this.$refs.radialProgressBars, {
+      attributes: true,
+      attributeOldValue : true,
+      attributeFilter: ['class'],
+    });
+  },
+  beforeDestroy() {
+    this.observer.disconnect();
+  }, 
 };
 </script>
 
