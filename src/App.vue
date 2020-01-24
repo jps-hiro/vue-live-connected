@@ -161,21 +161,30 @@
       </div>
       <div class="columns is-multiline" ref="radialProgressBars" style="margin-top: 20px"  data-aos="zoom-in" data-aos-duration="10" data-aos-delay="10">
         <div class="column is-4">
-          <apexchart type="radialBar" ref="chart1" :options="chartOptions1" :series="seriesP1"></apexchart>
+          <div>
+            <apexchart type="radialBar" ref="chart1" :options="chartOptions1" :series="seriesP1"></apexchart>
+            <div class="pro-number">{{pro1}}%</div>
+          </div>
           <div style="text-align:center">
             77% of people said having a flexible job would allow
             them to be healthier (eat better, exercise more, etc).
           </div>
         </div>
         <div class="column is-4">
-          <apexchart type="radialBar" ref="chart2" :options="chartOptions2" :series="seriesP2"></apexchart>
+          <div>
+            <apexchart type="radialBar" ref="chart2" :options="chartOptions2" :series="seriesP2"></apexchart>
+            <div class="pro-number">{{pro2}}%</div>
+          </div>
           <div style="text-align:center">
             86% of people said they would be less
             stressed by having a flexible job.
           </div>
         </div>
         <div class="column is-4">
-          <apexchart type="radialBar" ref="chart3" :options="chartOptions3" :series="seriesP3"></apexchart>
+          <div>
+            <apexchart type="radialBar" ref="chart3" :options="chartOptions3" :series="seriesP3"></apexchart>
+            <div class="pro-number">{{pro3}}%</div>
+          </div>
           <div style="text-align:center">
             97% of workers say a job with flexibility would
             have huge improvement or positive impact on their
@@ -564,7 +573,9 @@ export default {
   },
   data: function() {
     return {
-      
+      pro1: 77,
+      pro2: 86,
+      pro3: 97,
       seriesP1: [77],
       chartOptions1: {
         chart: {
@@ -593,14 +604,6 @@ export default {
               background: "#e7e7e7",
               strokeWidth: '97%',
               margin: 5, // margin is in pixels
-              dropShadow: {
-                enabled: true,
-                top: 2,
-                left: 0,
-                color: '#999',
-                opacity: 1,
-                blur: 2
-              }
             },
             dataLabels: {
               name: {
@@ -608,7 +611,10 @@ export default {
               },
               value: {
                 offsetY: -2,
-                fontSize: '22px'
+                fontSize: '22px',
+                formatter: function()  {
+                  return ''
+                }
               }
             }
           }
@@ -643,14 +649,6 @@ export default {
               background: "#e7e7e7",
               strokeWidth: '97%',
               margin: 5, // margin is in pixels
-              dropShadow: {
-                enabled: true,
-                top: 2,
-                left: 0,
-                color: '#999',
-                opacity: 1,
-                blur: 2
-              }
             },
             dataLabels: {
               name: {
@@ -658,7 +656,10 @@ export default {
               },
               value: {
                 offsetY: -2,
-                fontSize: '22px'
+                fontSize: '22px',
+                formatter: function()  {
+                  return ''
+                }
               }
             }
           }
@@ -693,14 +694,6 @@ export default {
               background: "#e7e7e7",
               strokeWidth: '97%',
               margin: 5, // margin is in pixels
-              dropShadow: {
-                enabled: true,
-                top: 2,
-                left: 0,
-                color: '#999',
-                opacity: 1,
-                blur: 2
-              }
             },
             dataLabels: {
               name: {
@@ -708,7 +701,10 @@ export default {
               },
               value: {
                 offsetY: -2,
-                fontSize: '22px'
+                fontSize: '22px',
+                formatter: function()  {
+                  return ''
+                }
               }
             }
           }
@@ -736,6 +732,9 @@ export default {
         },
         xaxis: {
           categories: ['', ''],
+          axisBorder: {
+            height: 5
+          }
         },
         yaxis: {
           tickAmount: 12,
@@ -785,6 +784,9 @@ export default {
         },
         xaxis: {
           categories: ['', ''],
+          axisBorder: {
+            height: 5
+          }
         },
         yaxis: {
           tickAmount: 10,
@@ -834,6 +836,9 @@ export default {
         },
         xaxis: {
           categories: ['', ''],
+          axisBorder: {
+            height: 5
+          }
         },
         yaxis: {
           tickAmount: 10,
@@ -865,20 +870,23 @@ export default {
       series1: [
         {
           name: 'Amounts in $US Dollars',
-          data: [0, 0, 1285, 2867, 0, 0],
+          data: [0, 0, 0, 1285, 2867, 0, 0, 0],
         },
       ],
       series2: [{
         name: 'Amounts in $US Dollars',
-        data: [0,0 , 290000, 720000, 0,0],
+        data: [0,0 ,0, 290000, 720000, 0,0,0],
       }],
       series3: [{
         name: 'Amounts in Minutes',
-        data: [0, 0, 10, 48, 0, 0]
+        data: [0, 0,0, 10, 48, 0, 0,0]
       }],
       oldAttr:"",
       oldAttr1:"",
-    }
+      timer2: null,
+      timer3: null,
+      timer1: null
+    }    
   },
   methods: {
     onClassChange(classAttrValue) {
@@ -889,7 +897,7 @@ export default {
           if (classList.includes('aos-animate')) {
             this.$refs.chart4.updateOptions (this.options1, true, true, true);
             this.$refs.chart5.updateOptions (this.options2, true, true, true);
-            this.$refs.chart6.updateOptions (this.options3, true, true, true);                
+            this.$refs.chart6.updateOptions (this.options3, true, true, true);
           }
         }
       } else {
@@ -899,6 +907,34 @@ export default {
             this.$refs.chart1.updateOptions (this.chartOptions1, true, true, true);
             this.$refs.chart2.updateOptions (this.chartOptions2, true, true, true);
             this.$refs.chart3.updateOptions (this.chartOptions3, true, true, true);
+            this.pro1=0
+            this.timer1 = setInterval(()=>{
+              this.pro1++;
+              if(this.pro1>=this.seriesP1[0]) {
+                this.pro1=this.seriesP1[0]
+                clearInterval(this.timer1)
+              }
+            }, 21)
+            this.pro2=0
+            this.timer2 = setInterval(()=>{
+              this.pro2++;
+              if(this.pro2>=this.seriesP2[0]) {
+                this.pro2=this.seriesP2[0]
+                clearInterval(this.timer2)
+              }
+            }, 21)
+            this.pro3=0
+            this.timer3 = setInterval(()=>{
+              this.pro3++;
+              if(this.pro3>=this.seriesP3[0]) {
+                this.pro3=this.seriesP3[0]
+                clearInterval(this.timer3)
+              }
+            }, 21)
+          } else {
+            clearInterval(this.timer1);
+            clearInterval(this.timer2);
+            clearInterval(this.timer3);
           }
         }
       }
